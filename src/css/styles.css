@@ -2,6 +2,16 @@ body {
   margin-right: 20%;
   margin-left: 20%;
   text-align: center;
+  background-image: url('https://www.bergerpaints.com/imaginecolours/wp-content/uploads/2016/09/flags-of-the-world-1170x693.png');
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.info {
+  background-color: white;
+  border: 5px soild black;
+  padding: 2%;
 }
 
 #result {
