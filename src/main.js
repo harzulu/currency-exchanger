@@ -5,11 +5,12 @@ import './css/styles.css';
 import { Currency } from './js/currency.js';
 
 function getElements(response) {
-  if (response.main) {
-    $("#result").html(`Your currency in EUR is: ${response.conversion_rates.EUR}`);
+  if (response.result === "success") {
+    console.log("Success!");
+    $("#result1").html(`Your currency in EUR is: ${response.conversion_rates.EUR}`);
   } else {
     console.log(response);
-    $("#result").html(`There was an error: ${response}`);
+    $("#result2").html(`There was an error: ${response['error-type']}`);
   }
 }
 
