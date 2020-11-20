@@ -18,6 +18,7 @@ body {
 }
 
 .info {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: 5%;
   background-color: rgba(255, 255, 255, 0.75);
   border: 5px solid black;
