@@ -7,9 +7,10 @@
 </head>
 <body>
   <div class="container">
+    <h1>Currency Converter</h1>
     <form id="submit">
       <label for="currency">Enter your USD amount:</label>
-      <input type="number" id="currency"> <br>
+      <input type="number" id="usd"> <br>
       <label for="convertTo">What currency would you like to convert to?</label>
         <select name="currencyToConvertTo" id="convertTo">
           <option value="AED">UAE Dirham</option>
@@ -67,8 +68,10 @@
         </select> <br>
       <button type="submit" class="btn btn-outline-success" id="btn">Submit</button>
     </form>
-    <div>
+    <div id="result">
+      <h1>Your new currency is: </h1>
       <h1 id="result1"></h1>
+      <h1 id="currency"></h1>
       <h2 id="result2"></h2>
     </div>
   </div>
