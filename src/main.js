@@ -11,7 +11,11 @@ function exchangeAmmount(before, conversion) {
 function getElements(response, conversionCurrency, usdAmount) {
   if (response.result === "success") {
     let conversionNumber = response.conversion_rates[conversionCurrency];
-    $("#result1").html(exchangeAmmount(usdAmount, conversionNumber));
+    if (typeof conversionNumber === 'number') {
+      $("#result1").html(exchangeAmmount(usdAmount, conversionNumber));
+    } else {
+      $("#result1").html("Your entered currency is invalid...");
+    }
   } else {
     $("#result2").html(`There was an error: ${response['error-type']}`);
   }
