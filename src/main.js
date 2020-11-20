@@ -25,6 +25,6 @@ async function apiCall(conversionCurrency, usdAmount) {
 $("#submit").submit(function(event) {
   event.preventDefault();
   const usdAmount = $("#currency").val();
-  const currency = $("convertTo").val();
+  const currency = $("#convertTo").val();
   apiCall(currency, usdAmount);
 });
