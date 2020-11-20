@@ -4,13 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 import { Currency } from './js/currency.js';
 
-Currency;
-$;
-
 function getElements(response) {
   if (response.main) {
     $("#result").html(`Your currency in EUR is: ${response.conversion_rates.EUR}`);
   } else {
+    console.log(response);
     $("#result").html(`There was an error: ${response}`);
   }
 }
