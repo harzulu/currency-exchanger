@@ -4,22 +4,27 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 import { Currency } from './js/currency.js';
 
-function getElements(response) {
+function exchangeAmmount(before, conversion) {
+  return before * conversion;
+}
+
+function getElements(response, conversionCurrency, usdAmount) {
   if (response.result === "success") {
-    console.log("Success!");
-    $("#result1").html(`Your currency in EUR is: ${response.conversion_rates.EUR}`);
+    let conversionNumber = response.conversion_rates[conversionCurrency];
+    $("#result1").html(exchangeAmmount(usdAmount, conversionNumber));
   } else {
-    console.log(response);
     $("#result2").html(`There was an error: ${response['error-type']}`);
   }
 }
 
-async function apiCall() {
+async function apiCall(conversionCurrency, usdAmount) {
   const response = await Currency.getCurrency();
-  getElements(response);
+  getElements(response, conversionCurrency, usdAmount);
 }
 
 $("#submit").submit(function(event) {
   event.preventDefault();
-  apiCall();
+  const usdAmount = $("#currency").val();
+  const currency = $("convertTo").val();
+  apiCall(currency, usdAmount);
 });
