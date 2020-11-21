@@ -17,6 +17,12 @@ body {
   background-color: white;
 }
 
+.valBox {
+  border-bottom: 2px solid black;
+  margin-bottom: 2%;
+  padding-bottom: 2%;
+}
+
 .info {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: 5%;

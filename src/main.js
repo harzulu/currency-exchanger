@@ -4,15 +4,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 import { Currency } from './js/currency.js';
 
-function exchangeAmmount(before, conversion) {
-  return before * conversion;
+function exchangeAmmount(ammount, conversionFrom, conversionTo) {
+  let usdVal = ammount / conversionFrom;
+  return conversionTo * usdVal;
 }
 
-function getElements(response, conversionCurrency, usdAmount) {
+function getElements(response, convertTo, amount, convertFrom) {
   if (response.result === "success") {
-    let conversionNumber = response.conversion_rates[conversionCurrency];
-    if (typeof conversionNumber === 'number') {
-      $("#result1").html(exchangeAmmount(usdAmount, conversionNumber));
+    let conversionFrom = response.conversion_rates[convertFrom];
+    let conversionTo = response.conversion_rates[convertTo];
+    if (typeof conversionFrom === 'number' && typeof conversionTo === 'number') {
+      $("#result1").html(exchangeAmmount(amount, conversionFrom, conversionTo));
     } else {
       $("#result1").html("Your entered currency is invalid...");
     }
@@ -21,15 +23,16 @@ function getElements(response, conversionCurrency, usdAmount) {
   }
 }
 
-async function apiCall(conversionCurrency, usdAmount) {
+async function apiCall(convertTo, amount, convertFrom) {
   const response = await Currency.getCurrency();
-  getElements(response, conversionCurrency, usdAmount);
+  getElements(response, convertTo, amount, convertFrom);
 }
 
 $("#submit").submit(function(event) {
   event.preventDefault();
-  const usdAmount = $("#usd").val();
-  const currency = $("#convertTo").val();
-  apiCall(currency, usdAmount);
-  $("#currency").html(currency);
+  const amount = $("#ammount").val();
+  const convertFrom = $("#convertFrom").val();
+  const convertTo = $("#convertTo").val();
+  apiCall(convertTo, amount, convertFrom);
+  $("#currency").html(convertTo);
 });
